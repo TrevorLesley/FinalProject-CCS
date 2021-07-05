@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "whitenosie.runserver_nostatic",
+    "whitenoise.runserver_nostatic",
     # local
     "accounts.apps.AccountsConfig",
     "frontend.apps.FrontendConfig",
