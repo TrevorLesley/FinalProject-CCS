@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ["127.0.0.1", "ccs-final-project-tk.herokuapp.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
+    "django.contrib.sites",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
