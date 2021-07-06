@@ -1,25 +1,96 @@
-import logo from './logo.svg';
+import Registration from './registration';
+import Login from './login';
+import Homepage from './homepage';
+import Cookies from 'js-cookie';
+import { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selection: !!Cookies.get('Authorization') ? 'homepage' : 'login'
+    }
+    this.handleLogout = this.handleLogout.bind(this);
+    this.handleRender = this.handleRender.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+  }
+
+  async handleLogin(user) {
+    this.setState({ user: user.username});
+    const options = {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+       'X-CSRFToken': Cookies.get('csrftoken'),
+     },
+     body: JSON.stringify(user),
+    };
+    const handleError = (err) => console.warn(err);
+    const response = await fetch('/rest-auth/login/', options);
+    const data = await response.json().catch(handleError);
+      if (data.key) {
+     Cookies.set('Authorization', `Token ${data.key}`);
+     this.setState({selection: 'chat'});
+    }
+ }
+
+  async handleLogout() {
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+    };
+
+    const handleError = (err) => console.warn(err);
+    const response = await fetch('/rest-auth/logout/', options).catch(handleError);
+    if(response.ok) {
+      Cookies.remove('Authorization');
+      this.setState({selection: 'login'});
+    }
+
+
+  }
+
+  handleRender(selection) {
+    this.setState({selection});
+  }
+
+  async handleRegister(user) {
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(user),
+    };
+
+    const handleError = (err) => console.warn(err);
+    const response = await fetch('/rest-auth/registration/', options);
+    const data = await response.json().catch(handleError);
+
+    if (data.key) {
+      Cookies.set('Authorization', `Token ${data.key}`);
+      this.setState({ selection: 'homepage' });
+    }
+
+  }
+
+  render() {
+    return (
+      <>
+          <div className='background'>
+            {this.state.selection === 'login' && <Login handleLogin={this.handleLogin} handleRender={this.handleRender}/>}
+            {this.state.selection === 'signup' && <Registration handleRegister={this.handleRegister} handleRender={this.handleRender}/>}
+            {this.state.selection === 'homepage' && <Homepage handleLogout={this.handleLogout}/>}
+          </div>
+        </>
+    );
+  }
 }
 
 export default App;
