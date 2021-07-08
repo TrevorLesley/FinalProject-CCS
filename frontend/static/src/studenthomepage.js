@@ -1,11 +1,12 @@
 import { Component } from 'react';
 import './App.css';
+import StudentEditProfile from './studentprofiledetail';
 
-class Homepage extends Component {
+class Studenthomepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selection: 'home',
+            selection: `homepage`,
         }
     }
 
@@ -14,6 +15,7 @@ class Homepage extends Component {
         return (
             <>
                 <h1>Placeholder Homepage</h1>
+                <button type='button' onClick={this.props.handleRender}>Edit Profile</button>
             <button type='button' onClick={this.props.handleLogout}>Log Out</button>
             </>
         )
@@ -21,4 +23,4 @@ class Homepage extends Component {
 
 }
 
-export default Homepage
+export default Studenthomepage

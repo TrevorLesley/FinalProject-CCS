@@ -7,14 +7,12 @@ class User(AbstractUser):
     pass
 
 
-class AdminUser(models.Model):
-    pass
-
-
 class Profile(models.Model):
-    user = (models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE),)
-    avatar = models.ImageField(upload_to="profiles")
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    avatar = models.ImageField(upload_to="profiles", blank=True)
     display_name = models.CharField(max_length=40)
+    email = models.EmailField(max_length=200, unique=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.display_name

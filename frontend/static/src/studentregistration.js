@@ -1,11 +1,12 @@
 import { Component } from 'react';
 
-class Registration extends Component {
+class StudentRegistration extends Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
             email: '',
+            avatar: '',
             password1: '',
             password2: '',
         }
@@ -55,4 +56,4 @@ class Registration extends Component {
 
 }
 
-export default Registration
+export default StudentRegistration

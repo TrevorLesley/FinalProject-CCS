@@ -1,6 +1,6 @@
-import Registration from './registration';
+import StudentRegistration from './studentregistration';
 import Login from './login';
-import Homepage from './homepage';
+import Homepage from './studenthomepage';
 import Cookies from 'js-cookie';
 import { Component } from 'react';
 import './App.css';
@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selection: !!Cookies.get('Authorization') ? 'homepage' : 'login'
+      selection: !!Cookies.get('Authorization') ? `${true ? 'homepage' : 'nothomepage'}` : 'login'
     }
     this.handleLogout = this.handleLogout.bind(this);
     this.handleRender = this.handleRender.bind(this);
@@ -31,7 +31,7 @@ class App extends Component {
     const data = await response.json().catch(handleError);
       if (data.key) {
      Cookies.set('Authorization', `Token ${data.key}`);
-     this.setState({selection: 'chat'});
+     this.setState({selection: 'homepage'});
     }
  }
 
@@ -85,8 +85,8 @@ class App extends Component {
       <>
           <div className='background'>
             {this.state.selection === 'login' && <Login handleLogin={this.handleLogin} handleRender={this.handleRender}/>}
-            {this.state.selection === 'signup' && <Registration handleRegister={this.handleRegister} handleRender={this.handleRender}/>}
-            {this.state.selection === 'homepage' && <Homepage handleLogout={this.handleLogout}/>}
+            {this.state.selection === 'signup' && <StudentRegistration handleRegister={this.handleRegister} handleRender={this.handleRender}/>}
+          {this.state.selection === 'homepage' && <Homepage handleRender={this.handleRender} handleLogout={this.handleLogout}/>}
           </div>
         </>
     );
