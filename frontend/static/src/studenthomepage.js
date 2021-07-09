@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import './App.css';
-import StudentEditProfile from './studentprofiledetail';
 
 class Studenthomepage extends Component {
     constructor(props) {

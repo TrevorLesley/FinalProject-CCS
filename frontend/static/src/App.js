@@ -4,12 +4,16 @@ import Homepage from './studenthomepage';
 import Cookies from 'js-cookie';
 import { Component } from 'react';
 import './App.css';
+import {
+  Link, Switch, Route
+
+} from 'react-router-dom';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selection: !!Cookies.get('Authorization') ? `${true ? 'homepage' : 'nothomepage'}` : 'login'
+      selection: !!Cookies.get('Authorization') ? '' : 'login'
     }
     this.handleLogout = this.handleLogout.bind(this);
     this.handleRender = this.handleRender.bind(this);
@@ -83,6 +87,17 @@ class App extends Component {
   render() {
     return (
       <>
+        <Switch>
+          <Route path='/'> <Login handleLogin={this.handleLogin} handleRender={this.handleRender}/> </Route>
+          {/* <Route path='/user-reg-select'> <RegisterSelect/> </Route> */}
+        </Switch>
+
+        <nav>
+          <ul>
+            <li> <Link to='/'>Login</Link> </li>
+            {/* <li> <link to='/user-reg-select'>Register</link> </li> */}
+          </ul>
+        </nav>
           <div className='background'>
             {this.state.selection === 'login' && <Login handleLogin={this.handleLogin} handleRender={this.handleRender}/>}
             {this.state.selection === 'signup' && <StudentRegistration handleRegister={this.handleRegister} handleRender={this.handleRender}/>}
