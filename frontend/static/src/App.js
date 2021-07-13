@@ -1,13 +1,13 @@
-import StudentRegistration from './studentregistration';
 import Login from './login';
-import Homepage from './studenthomepage';
+import Registration from './registration';
 import Cookies from 'js-cookie';
 import { Component } from 'react';
 import './App.css';
 import {
-  Link, Switch, Route
-
-} from 'react-router-dom';
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
 
 class App extends Component {
   constructor(props) {
@@ -87,22 +87,17 @@ class App extends Component {
   render() {
     return (
       <>
+        
+      <Router>
         <Switch>
-          <Route path='/'> <Login handleLogin={this.handleLogin} handleRender={this.handleRender}/> </Route>
-          {/* <Route path='/user-reg-select'> <RegisterSelect/> </Route> */}
-        </Switch>
-
-        <nav>
-          <ul>
-            <li> <Link to='/'>Login</Link> </li>
-            {/* <li> <link to='/user-reg-select'>Register</link> </li> */}
-          </ul>
-        </nav>
-          <div className='background'>
-            {this.state.selection === 'login' && <Login handleLogin={this.handleLogin} handleRender={this.handleRender}/>}
-            {this.state.selection === 'signup' && <StudentRegistration handleRegister={this.handleRegister} handleRender={this.handleRender}/>}
-          {this.state.selection === 'homepage' && <Homepage handleRender={this.handleRender} handleLogout={this.handleLogout}/>}
-          </div>
+            <Route exact path='/login'>
+              <Login handleLogin={this.handleLogin} handleRender={this.handleRender} />
+            </Route>
+            <Route exact path='/user-register'>
+              <Registration handleRegister={this.handleRegister} handleRender={this.handleRender} />
+            </Route>
+          </Switch>
+          </Router>
         </>
     );
   }

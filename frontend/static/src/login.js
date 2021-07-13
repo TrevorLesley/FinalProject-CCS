@@ -1,3 +1,5 @@
+import { Navbar, Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import { Component } from 'react';
 import './App.css';
 
@@ -25,26 +27,32 @@ class Login extends Component {
     render() {
 
         return (
-        <form onSubmit={this.handleSubmit}>
-            <div className="mb-3">
-            <label htmlFor="username" id="username" className="form-label">Username</label>
-            <input type="text" className="form-control" id="username" name='username' onChange={this.handleInput}>
-            </input>
-        </div>
-        <div className="mb-3">
-        <label htmlFor="email" className="form-label">Email address</label>
-        <input type="text" className="form-control" name='email' id="email" onChange={this.handleInput}>
-        </input>
-        </div>
-        <div className="mb-3">
-            <label htmlFor="password1" className="form-label">Password</label>
-            <input type="current-password" className="form-control" name='password' id="password1" onChange={this.handleInput}>
-            </input>
-            </div>   
+            <>
+            <Navbar>
+                <Link to=''></Link>
+                <Link to=''></Link>
+            </Navbar>
+            <Form onSubmit={this.handleSubmit}>
+                <div className="mb-3">
+                    <label htmlFor="username" id="username" className="form-label">Username</label>
+                    <input type="text" className="form-control" id="username" name='username' onChange={this.handleInput}>
+                    </input>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="email" className="form-label">Email address</label>
+                    <input type="text" className="form-control" name='email' id="email" onChange={this.handleInput}>
+                    </input>
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="password1" className="form-label">Password</label>
+                    <input type="current-password" className="form-control" name='password' id="password1" onChange={this.handleInput}>
+                    </input>
+                </div>   
                 <button type="button" className="btn btn-link" onClick={() => this.props.handleRender('signup')}>Don't have an account? Sign up!</button>
                 <button type="submit" className="btn btn-primary">Login</button>
 
-        </form>
+            </Form>
+            </>
         )}
 }
 
