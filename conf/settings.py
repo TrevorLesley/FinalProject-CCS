@@ -168,3 +168,10 @@ MEDIA_URL = "/media/"
 
 SITE_ID = 1
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+# REST_AUTH_SERIALIZERS
+# https://django-rest-auth.readthedocs.io/en/latest/configuration.html?highlight=REGISTER_SERIALIZER#configuration
+
+REST_AUTH_REGISTER_SERIALIZERS = {
+    "REGISTER_SERIALIZER": "accounts.serializers.RegistrationSerializer",
+}

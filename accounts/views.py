@@ -1,26 +1,23 @@
 from rest_framework import generics
 from rest_framework.permissions import IsAdminUser
 
-from .models import Profile
-from .serializers import ProfileSerializer
+from .models import User
+from .serializers import UserSerializer
 from .permissions import IsAuthOrReadOnly
 
 
-class ProfileListAPIView(generics.ListCreateAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
-
-    def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+class UserListAPIView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
-class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+class UserDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     permission_classes = (IsAuthOrReadOnly,)
 
 
-class ProfileAdminAPIView(generics.RetrieveDestroyAPIView):
-    queryset = Profile.objects.all()
-    serializer_class = ProfileSerializer
+class UserAdminAPIView(generics.RetrieveDestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
     permission_classes = IsAdminUser
