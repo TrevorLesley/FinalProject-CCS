@@ -1,8 +1,8 @@
 from rest_framework import generics
-
-from .models import Profile
+from .models import Note
+from django.conf import settings
 from .serializers import NoteSerializer
-from rest_framework import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 # Create your views here.
 
@@ -28,4 +28,4 @@ class NotesEditAPIView(generics.RetrieveUpdateDestroyAPIView):
 class NotesAdminAPIView(generics.RetrieveDestroyAPIView):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
-    permission_classes = IsAdmin
+    permission_classes = IsAdminUser

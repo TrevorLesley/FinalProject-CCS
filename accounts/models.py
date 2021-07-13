@@ -13,6 +13,7 @@ class Profile(models.Model):
     display_name = models.CharField(max_length=40)
     email = models.EmailField(max_length=200, unique=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    is_instructor = models.BooleanField(default=False)
 
     def __str__(self):
         return self.display_name

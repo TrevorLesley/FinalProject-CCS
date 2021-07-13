@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.permissions import IsAdminUser
 
 from .models import Profile
 from .serializers import ProfileSerializer
@@ -22,4 +23,4 @@ class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 class ProfileAdminAPIView(generics.RetrieveDestroyAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
-    permission_classes = IsAdmin
+    permission_classes = IsAdminUser
