@@ -3,4 +3,5 @@ from django.contrib.auth.admin import UserAdmin
 from .models import User
 
 # Register your models here.
+UserAdmin.fieldsets += ((None, {"fields": ("avatar",)}),)
 admin.site.register(User, UserAdmin)
