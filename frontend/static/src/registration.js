@@ -1,4 +1,5 @@
 import { Navbar, Form } from 'react-bootstrap';
+import Login from './login';
 import { Link } from 'react-router-dom';
 import { Component } from 'react';
 
@@ -30,10 +31,9 @@ class Registration extends Component {
         return (
             <>
                 <Navbar>
-                    <ul>
-                        <li> <Link exact to='/login'>Login</Link> </li>
-                        <li> <Link exact to='/user-register'>Register</Link> </li>
-                    </ul>
+                    <Link to='/login'>
+                        <Login/>
+                    </Link>
                 </Navbar>
                 <Form onSubmit={this.handleSubmit}>
             <div className="mb-3">

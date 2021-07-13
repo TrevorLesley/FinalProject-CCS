@@ -17,3 +17,9 @@ class ProfileDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
     permission_classes = (IsAuthOrReadOnly,)
+
+
+class ProfileAdminAPIView(generics.RetrieveDestroyAPIView):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = IsAdmin

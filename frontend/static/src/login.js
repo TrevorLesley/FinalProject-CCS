@@ -2,6 +2,7 @@ import { Navbar, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Component } from 'react';
 import './App.css';
+import Registration from './registration';
 
 class Login extends Component {
     constructor(props) {
@@ -29,8 +30,9 @@ class Login extends Component {
         return (
             <>
             <Navbar>
-                <Link to=''></Link>
-                <Link to=''></Link>
+                <Link to='/user-register'>
+                      <Registration/>  
+                </Link>
             </Navbar>
             <Form onSubmit={this.handleSubmit}>
                 <div className="mb-3">
