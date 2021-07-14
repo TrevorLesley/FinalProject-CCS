@@ -8,18 +8,24 @@ from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 
 class NotesAPIView(generics.ListCreateAPIView):
-    queryset = Note.objects.all()
     serializer_class = NoteSerializer
     permission_classes = IsAuthenticated
+
+    def get_queryset(self):
+        user = self.request.user
+        return Notes.objects.filter(owner=user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
 
 class NotesEditAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Note.objects.all()
     serializer_class = NoteSerializer
     permission_classes = IsAuthenticated
+
+    def get_queryset(self):
+        user = self.request.user
+        return Notes.objects.filter(owner=user)
 
     def perform_create():
         pass

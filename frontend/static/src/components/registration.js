@@ -1,5 +1,4 @@
-import { Navbar, Form, Nav } from 'react-bootstrap';
-import Login from './login';
+import { Navbar, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Component } from 'react';
 

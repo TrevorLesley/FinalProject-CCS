@@ -7,7 +7,7 @@ class Studenthomepage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selection: `homepage`,
+            
         }
     }
 
@@ -18,7 +18,7 @@ class Studenthomepage extends Component {
                 <Navbar>
                     <ul>
                         <li> <Link exact to='/login'>Login</Link> </li>
-                        <li> <Link exact to='/user-register'>Register</Link> </li>
+                        <li> <Link exact to='/notes'>Notes</Link> </li>
                     </ul>
                 </Navbar>
                 <h1>Placeholder Homepage</h1>

@@ -1,19 +1,24 @@
-import TitlePage from './titlepage';
+// import TitlePage from './titlepage';
+import NotesTab from './notesTab';
 import Cookies from 'js-cookie';
 import { Component } from 'react';
 import './App.css';
 import {
   withRouter,
-  Router,
   Switch,
   Route,
 } from "react-router-dom";
+
+import StudentHomePage from './studenthomepage'
+import Login from './login';
+import Registration from './registration';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      isLoggedIn: false,
     }
     this.handleLogout = this.handleLogout.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -34,7 +39,10 @@ class App extends Component {
     const data = await response.json().catch(handleError);
     if (data.key) {
       Cookies.set('Authorization', `Token ${data.key}`);
+      this.setState({ isLoggedIn: true });
     }
+    
+    
   }
 
   async handleLogout() {
@@ -79,13 +87,24 @@ class App extends Component {
 
   render() {
     return (
-      <Router>
-        <Switch>
-          <Route path="/" exact>
-            <TitlePage />
-          </Route>
-        </Switch>
-      </Router>
+      
+        <>
+         <Switch>
+            <Route path='/login'>
+              <Login handleLogin={this.handleLogin} handleRender={this.handleRender} />
+            </Route>
+            <Route path='/register'>
+              <Registration handleRegister={this.handleRegister} handleRender={this.handleRender} />
+            </Route>
+            <Route path='/' exact>
+              <StudentHomePage />
+            </Route>
+            <Route path='/notes/:id'>
+              <NotesTab />
+            </Route>
+          </Switch>
+        </>
+
 
     );
   }

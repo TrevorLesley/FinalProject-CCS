@@ -50,8 +50,9 @@ class Login extends Component {
                     <input type="current-password" className="form-control" name='password' id="password1" onChange={this.handleInput} />
                  
                 </div>   
-                <button type="button" className="btn btn-link" onClick={() => this.props.handleRender('signup')}>Don't have an account? Sign up!</button>
-                <button type="submit" className="btn btn-primary">Login</button>
+                <button type="button" className="btn btn-link" >Don't have an account? Sign up!</button>
+                    <Link to="/studenthomepage"><button type="submit" className="btn btn-primary">Login</button>
+                    </Link>
 
             </Form>
             </>
