@@ -1,10 +1,10 @@
-import Login from './login';
-import Registration from './registration';
+import TitlePage from './titlepage';
 import Cookies from 'js-cookie';
 import { Component } from 'react';
 import './App.css';
 import {
-  BrowserRouter as Router,
+  withRouter,
+  Router,
   Switch,
   Route,
 } from "react-router-dom";
@@ -13,31 +13,29 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selection: !!Cookies.get('Authorization') ? '' : 'login'
+
     }
     this.handleLogout = this.handleLogout.bind(this);
-    this.handleRender = this.handleRender.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
   }
 
   async handleLogin(user) {
-    this.setState({ user: user.username});
+    this.setState({ user: user.username });
     const options = {
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/json',
-       'X-CSRFToken': Cookies.get('csrftoken'),
-     },
-     body: JSON.stringify(user),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': Cookies.get('csrftoken'),
+      },
+      body: JSON.stringify(user),
     };
     const handleError = (err) => console.warn(err);
     const response = await fetch('/rest-auth/login/', options);
     const data = await response.json().catch(handleError);
-      if (data.key) {
-     Cookies.set('Authorization', `Token ${data.key}`);
-     this.setState({selection: 'homepage'});
+    if (data.key) {
+      Cookies.set('Authorization', `Token ${data.key}`);
     }
- }
+  }
 
   async handleLogout() {
     const options = {
@@ -50,16 +48,11 @@ class App extends Component {
 
     const handleError = (err) => console.warn(err);
     const response = await fetch('/rest-auth/logout/', options).catch(handleError);
-    if(response.ok) {
+    if (response.ok) {
       Cookies.remove('Authorization');
-      this.setState({selection: 'login'});
     }
 
 
-  }
-
-  handleRender(selection) {
-    this.setState({selection});
   }
 
   async handleRegister(user) {
@@ -79,16 +72,31 @@ class App extends Component {
 
     if (data.key) {
       Cookies.set('Authorization', `Token ${data.key}`);
-      this.setState({ selection: 'homepage' });
+      
     }
 
   }
 
   render() {
     return (
-      <>
-        
       <Router>
+        <Switch>
+          <Route path="/" exact>
+            <TitlePage />
+          </Route>
+        </Switch>
+      </Router>
+
+    );
+  }
+}
+
+export default withRouter(App);
+
+
+
+
+/* <Router>
         <Switch>
             <Route exact path='/login'>
               <Login handleLogin={this.handleLogin} handleRender={this.handleRender} />
@@ -97,10 +105,4 @@ class App extends Component {
               <Registration handleRegister={this.handleRegister} handleRender={this.handleRender} />
             </Route>
           </Switch>
-          </Router>
-        </>
-    );
-  }
-}
-
-export default App;
+          </Router> */

@@ -9,8 +9,8 @@ class RegistrationSerializer(RegisterSerializer):
         fields = "__all__"
 
     def custom_signup(self, request, user):
-        user.avatar = self.validated_data.get("avatar", "")
-        user.is_instructor = self.validated_data.get("is_instructor", "")
+        user.avatar = self.validated_data.get("avatar")
+        user.is_instructor = self.validated_data.get("is_instructor")
         user.save(
             update_fields=[
                 "avatar",

@@ -37,18 +37,18 @@ class Login extends Component {
             <Form onSubmit={this.handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="username" id="username" className="form-label">Username</label>
-                    <input type="text" className="form-control" id="username" name='username' onChange={this.handleInput}>
-                    </input>
+                    <input type="text" className="form-control" id="username" name='username' onChange={this.handleInput} />
+                   
                 </div>
                 <div className="mb-3">
                     <label htmlFor="email" className="form-label">Email address</label>
-                    <input type="text" className="form-control" name='email' id="email" onChange={this.handleInput}>
-                    </input>
+                    <input type="text" className="form-control" name='email' id="email" onChange={this.handleInput} />
+                  
                 </div>
                 <div className="mb-3">
                     <label htmlFor="password1" className="form-label">Password</label>
-                    <input type="current-password" className="form-control" name='password' id="password1" onChange={this.handleInput}>
-                    </input>
+                    <input type="current-password" className="form-control" name='password' id="password1" onChange={this.handleInput} />
+                 
                 </div>   
                 <button type="button" className="btn btn-link" onClick={() => this.props.handleRender('signup')}>Don't have an account? Sign up!</button>
                 <button type="submit" className="btn btn-primary">Login</button>
