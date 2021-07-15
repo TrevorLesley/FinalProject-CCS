@@ -99,7 +99,7 @@ class App extends Component {
             <Route path='/' exact>
               <StudentHomePage />
             </Route>
-            <Route path='/notes/:id'>
+            <Route path='/notes'>
               <NotesTab />
             </Route>
           </Switch>

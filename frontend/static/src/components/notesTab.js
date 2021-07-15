@@ -14,9 +14,14 @@ class NotesTab extends Component {
 
     
     componentDidMount() {
-        fetch('api/v1/users/notes')
-            .then(response => response.json())
-            .then(data => this.setState({ notes: data }));
+        fetch('api/v1/notes/noteslist/')
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => this.setState({ messages: data }));
         
         
 
@@ -36,6 +41,7 @@ class NotesTab extends Component {
                 </Navbar>
                 <div>I'm notes tab - { this.props.match.params.id}
                 </div>
+                <ul>{notes}</ul>
             </>
         )
     }
