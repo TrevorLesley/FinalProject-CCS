@@ -15,6 +15,7 @@ class Classroom(models.Model):
     students = models.ManyToManyField(
         settings.AUTH_USER_MODEL, related_name="classrooms"
     )
+    announcements = models.CharField(max_length=4000)
 
     def __str__(self):
         return self.class_name

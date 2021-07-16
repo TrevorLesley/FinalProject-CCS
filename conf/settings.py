@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "api.apps.ApiConfig",
     "notes.apps.NotesConfig",
     "classrooms.apps.ClassroomsConfig",
+    "announcements.apps.AnnouncementsConfig",
     # 3rd Party
     "rest_framework",
     "rest_framework.authtoken",

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { useParams, withRouter, Link } from 'react-router-dom';
-import { Navbar } from 'react-bootstrap';
+import { Navbar, Button } from 'react-bootstrap';
 import NoteDetail from './noteDetail';
 
 class NotesTab extends Component {
@@ -10,8 +10,10 @@ class NotesTab extends Component {
             user: '',
             notes: [],
         }
+        this.renderEdit = this.renderEdit.bind(this);
     }
 
+    
     
     componentDidMount() {
         fetch('api/v1/notes/noteslist/')
@@ -23,10 +25,12 @@ class NotesTab extends Component {
             })
             .then(data => this.setState({ notes: data }));
         
-        
 
     }
 
+    renderEdit(event) {
+        event.preventDefault();
+    }
 
     render() {
         // console.log("this.props:", this.props)
@@ -35,7 +39,7 @@ class NotesTab extends Component {
             <li>
                 <h1> {notes.title} </h1>
                 <p> {notes.body} </p>
-                <NoteDetail {...this.props.note} />
+                <NoteDetail note={this.state.note} />
             </li>
         ))
         return (
