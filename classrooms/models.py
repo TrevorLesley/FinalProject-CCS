@@ -13,7 +13,7 @@ class Classroom(models.Model):
     )
     class_name = models.CharField(max_length=200)
     students = models.ManyToManyField(
-        settings.AUTH_USER_MODEL, related_name="classroom"
+        settings.AUTH_USER_MODEL, related_name="classrooms"
     )
 
     def __str__(self):

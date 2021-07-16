@@ -21,7 +21,7 @@ class NotesTab extends Component {
                 }
                 return response.json();
             })
-            .then(data => this.setState({ messages: data }));
+            .then(data => this.setState({ notes: data }));
         
         
 
@@ -32,7 +32,11 @@ class NotesTab extends Component {
         // console.log("this.props:", this.props)
     // const noteID = `${this.note.id}`
         const notes = this.state.notes.map((notes) => (
-            <NoteDetail />
+            <li>
+                <h1> {notes.title} </h1>
+                <p> {notes.body} </p>
+                <NoteDetail {...this.props.note} />
+            </li>
         ))
         return (
             <>

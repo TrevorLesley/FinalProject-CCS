@@ -12,6 +12,7 @@ import {
 import StudentHomePage from './studenthomepage'
 import Login from './login';
 import Registration from './registration';
+import NoteDetail from './noteDetail';
 
 
 class App extends Component {
@@ -99,8 +100,11 @@ class App extends Component {
             <Route path='/' exact>
               <StudentHomePage />
             </Route>
-            <Route path='/notes'>
+            <Route path='/notes' exact>
               <NotesTab />
+            </Route>
+            <Route path='/notes/edit'>
+              <NoteDetail />
             </Route>
           </Switch>
         </>
