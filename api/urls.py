@@ -5,4 +5,5 @@ urlpatterns = [
     path("rest-auth/", include("rest_auth.urls")),
     path("notes/", include("notes.urls")),
     path("classrooms/", include("classrooms.urls")),
+    path("announcements/", include("announcements.urls")),
 ]
