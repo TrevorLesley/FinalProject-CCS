@@ -1,6 +1,5 @@
 import { Component } from 'react';
-import { useParams, withRouter, Link } from 'react-router-dom';
-import { Navbar, Button } from 'react-bootstrap';
+import { withRouter, Link } from 'react-router-dom';
 import NoteDetail from './noteDetail';
 
 class NotesTab extends Component {
@@ -44,9 +43,6 @@ class NotesTab extends Component {
         ))
         return (
             <>
-                <Navbar>
-                    <Link to='/'>Home</Link>
-                </Navbar>
                 <div>I'm notes tab - { this.props.match.params.id}
                 </div>
                 <ul>{notes}</ul>

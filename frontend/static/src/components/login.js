@@ -1,8 +1,6 @@
-import { Navbar, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Component } from 'react';
 import './App.css';
-import Registration from './registration';
 
 class Login extends Component {
     constructor(props) {
@@ -29,12 +27,12 @@ class Login extends Component {
 
         return (
             <>
-            <Navbar>
-                <Link to='/user-register'>
-                      <Registration/>  
+            <nav>
+                <Link to='/register'>
+                      Register  
                 </Link>
-            </Navbar>
-            <Form onSubmit={this.handleSubmit}>
+            </nav>
+            <form className="login-register" onSubmit={this.handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="username" id="username" className="form-label">Username</label>
                     <input type="text" className="form-control" id="username" name='username' onChange={this.handleInput} />
@@ -49,12 +47,11 @@ class Login extends Component {
                     <label htmlFor="password1" className="form-label">Password</label>
                     <input type="current-password" className="form-control" name='password' id="password1" onChange={this.handleInput} />
                  
-                </div>   
-                <button type="button" className="btn btn-link" >Don't have an account? Sign up!</button>
-                    <Link to="/studenthomepage"><button type="submit" className="btn btn-primary">Login</button>
-                    </Link>
+                </div>
+                <button type="submit" className="btn btn-primary">Login</button>
+                <Link to="/register">Don't have an account? Sign up!</Link>
 
-            </Form>
+            </form>
             </>
         )}
 }

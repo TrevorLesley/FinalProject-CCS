@@ -19,11 +19,8 @@ class NoteDetail extends Component {
         this.setState({ isHidden: !this.state.isHidden });
     }
 
-    handleEdit(event) {
+    async handleEdit(event) {
         event.preventDefault();
-
-
-
         const options = {
             method: 'PUT',
             headers: {
@@ -31,6 +28,14 @@ class NoteDetail extends Component {
                 'X-CSRFToken': Cookies.get('csrftoken'),
             },
             body: JSON.stringify()
+        };
+
+        const handleError = (err) => console.warn(err);
+        const response = await fetch(`/api/v1/notes/note/${this.note.id}`, options);
+        const data = await response.json().catch(handleError);
+
+        if (response.ok) {
+            
         }
     }
 

@@ -41,6 +41,7 @@ class App extends Component {
     if (data.key) {
       Cookies.set('Authorization', `Token ${data.key}`);
       this.setState({ isLoggedIn: true });
+      this.props.history.push("/");
     }
     
     
@@ -59,6 +60,7 @@ class App extends Component {
     const response = await fetch('/rest-auth/logout/', options).catch(handleError);
     if (response.ok) {
       Cookies.remove('Authorization');
+      this.props.history.push("/login");
     }
 
 
@@ -76,12 +78,12 @@ class App extends Component {
     };
 
     const handleError = (err) => console.warn(err);
-    const response = await fetch('/rest-auth/registration/', options);
+    const response = await fetch('/api/v1/users/users', options);
     const data = await response.json().catch(handleError);
 
-    if (data.key) {
+    if (response.ok) {
       Cookies.set('Authorization', `Token ${data.key}`);
-      
+      this.props.history.push("/");
     }
 
   }

@@ -1,0 +1,15 @@
+.login-register {
+    display: inline-flex;
+}
+
+.notes-window {
+    background-color: wheat;
+    display: block;
+    max-width: 25%;
+    border-radius: 5%;
+}
+
+.profile-options {
+    display: block;
+    max-width: 100%;
+}

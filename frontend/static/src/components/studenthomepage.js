@@ -1,7 +1,7 @@
-import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { Component } from 'react';
-import './App.css';
+import NotesTab from './notesTab';
+import './custom.css';
 
 class Studenthomepage extends Component {
     constructor(props) {
@@ -15,16 +15,21 @@ class Studenthomepage extends Component {
     render() {
         return (
             <>
-                <Navbar>
+                <nav>
                     <ul>
                         <li> <Link exact to='/login'>Login</Link> </li>
                         <li> <Link exact to='/notes'>Notes</Link> </li>
                     </ul>
-                </Navbar>
+                </nav>
                 <h1>Placeholder Homepage</h1>
-                <button type='button' onClick={this.props.handleRender}>Edit Profile</button>
-            <button type='button' onClick={this.props.handleLogout}>Log Out</button>
-            </>
+                <div className="notes-window" >
+                    <NotesTab />
+                </div>
+                <div className="profile-options" >
+                    <button type='button' onClick={this.props.handleRender}>Edit Profile</button>
+                    <button type='button' onClick={this.props.handleLogout}>Log Out</button>
+                </div>
+                </>
         )
     }
 
