@@ -1,5 +1,6 @@
 // import TitlePage from './titlepage';
 import NotesTab from './notesTab';
+import AddNote from './addNote';
 import Cookies from 'js-cookie';
 import { Component } from 'react';
 import './App.css';
@@ -107,6 +108,9 @@ class App extends Component {
             </Route>
             <Route path='/notes/edit'>
               <NoteDetail />
+            </Route>
+            <Route path='/add-note'>
+              <AddNote />
             </Route>
           </Switch>
         </>

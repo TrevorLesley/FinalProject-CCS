@@ -6,10 +6,18 @@
     background-color: wheat;
     display: block;
     max-width: 25%;
-    border-radius: 5%;
+    /* border-radius: 10%; */
 }
 
 .profile-options {
     display: block;
     max-width: 100%;
 }
+
+.note-form {
+    display: flex;
+    background-color: wheat;
+    justify-content: center;
+    align-self: center;
+}
+

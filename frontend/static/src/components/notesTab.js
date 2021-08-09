@@ -8,8 +8,9 @@ class NotesTab extends Component {
         this.state = {
             user: '',
             notes: [],
+            addNote: false,
         }
-        this.renderEdit = this.renderEdit.bind(this);
+        // this.toggleAddForm = this.toggleAddForm.bind(this);
     }
 
     
@@ -27,9 +28,10 @@ class NotesTab extends Component {
 
     }
 
-    renderEdit(event) {
-        event.preventDefault();
-    }
+    // toggleAddForm(event) {
+    //     event.preventDefault();
+    //     this.setState({ addNote: !this.state.addNote })
+    // }
 
     render() {
         // console.log("this.props:", this.props)
@@ -43,8 +45,10 @@ class NotesTab extends Component {
         ))
         return (
             <>
+                {/* {!!this.state.addNote && <AddNote />} */}
                 <div>I'm notes tab - { this.props.match.params.id}
                 </div>
+                <Link to="/add-note">Add Note</Link>
                 <ul>{notes}</ul>
             </>
         )
