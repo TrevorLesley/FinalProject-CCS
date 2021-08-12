@@ -41,6 +41,7 @@ class App extends Component {
     const data = await response.json().catch(handleError);
     if (data.key) {
       Cookies.set('Authorization', `Token ${data.key}`);
+      localStorage.setItem("owner", data.user.id);
       this.setState({ isLoggedIn: true });
       this.props.history.push("/");
     }
@@ -79,11 +80,12 @@ class App extends Component {
     };
 
     const handleError = (err) => console.warn(err);
-    const response = await fetch('/api/v1/users/users', options);
+    const response = await fetch('/api/v1/users/users/', options);
     const data = await response.json().catch(handleError);
 
     if (response.ok) {
       Cookies.set('Authorization', `Token ${data.key}`);
+      localStorage.setItem("owner", data.user.id);
       this.props.history.push("/");
     }
 
@@ -101,7 +103,7 @@ class App extends Component {
               <Registration handleRegister={this.handleRegister} handleRender={this.handleRender} />
             </Route>
             <Route path='/' exact>
-              <StudentHomePage />
+              <StudentHomePage handleLogout={this.handleLogout} />
             </Route>
             <Route path='/notes' exact>
               <NotesTab />

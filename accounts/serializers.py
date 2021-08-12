@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_auth.registration.serializers import RegisterSerializer
-from .models import User
+from .models import Profile, User
 
 
 class RegistrationSerializer(RegisterSerializer):
@@ -15,5 +15,11 @@ class RegistrationSerializer(RegisterSerializer):
             update_fields=[
                 "avatar",
                 "is_instructor",
-            ]
+            ],
         )
+
+
+class AccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = "__all__"

@@ -5,7 +5,7 @@ class Registration extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isTeacher: null,
+            isTeacher: false,
             username: '',
             email: '',
             password1: '',
@@ -13,10 +13,16 @@ class Registration extends Component {
         }
         this.handleInput = this.handleInput.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleCheckbox = this.handleCheckbox.bind(this);
     }
 
     handleInput(event) {
         this.setState({[event.target.name]: event.target.value});
+    }
+
+    handleCheckbox(event) {
+        event.preventDefault();
+        this.setState({ [event.target.name]: !event.target.value });
     }
 
     handleSubmit(event) {
@@ -48,7 +54,7 @@ class Registration extends Component {
                         <label htmlFor="password2" name='password2' className="form-label">Confirm Password</label>
                         <input type="password" className="form-control" name='password2' id="password2" onChange={this.handleInput} />
                         <p>Check box if you are an instructor.</p>
-                        <input type='checkbox' name='isTeacher' onChange={this.handleInput}/><label for='isTeacher'>Instructor</label>
+                        <input type='checkbox' name='isTeacher' onChange={this.handleCheckbox}/><label for='isTeacher'>Instructor</label>
                     </div>
                     <button type="submit" className="btn btn-primary">Sign Up</button>
                     <Link to="/login">Already have an account? Login!</Link>       
